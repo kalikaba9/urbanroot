@@ -7,7 +7,7 @@ import Navigations from './Navigations';
 
 function ForumDetail() {
   const { id } = useParams();
-  const [forum, setForum] = useState(null);
+  const [forum, setForum] = useState([]);
   const [newMessage, setNewMessage] = useState('');
   const [user, setUser] = useState(null); // Pour stocker les informations de l'utilisateur
 
@@ -60,37 +60,39 @@ function ForumDetail() {
   };
 
   return (
-    <div className="p-4">
-      <Navigations />
-      <div className="max-w-md mx-auto bg-white p-8 rounded-lg shadow-md">
-        {forum && (
-          <>
-            <h1 className="text-3xl font-bold mb-4">{forum.title}</h1>
-            <p className="mb-4">{forum.description}</p>
-            <ul>
-              {forum.messages && forum.messages.map((msg, index) => (
-                <li key={index} className="mb-2">
-                  <strong>{msg.author}</strong>: {msg.message} <br />
-                  <span className="text-gray-500">{new Date(msg.timestamp).toLocaleString()}</span>
-                </li>
-              ))}
-            </ul>
-            <form onSubmit={handleAddMessage} className="mt-4">
+    <div className='items-center px-4'>
+    <Navigations />
+    <ul>
+        {forum.messages && forum.messages.map((msg, index) => (
+        <li key={index} className="mb-2">
+    <div class="flex flex-col p-5 lg:px-48 lg:py-2">
+    <div class="bg-gray-100 p-5 mb-10">
+        <h1 class="font-bold text-2xl mb-2">{forum.title}</h1>
+        <p class="my-3">
+            {forum.description}
+        </p>
+        
+        <strong>{msg.author}</strong>: {msg.message} <br />
+        <span className="text-gray-500">{new Date(msg.timestamp).toLocaleString()}</span>
+            
+    </div>
+    </div>
+    </li>
+  ))}
+    <form onSubmit={handleAddMessage} className="flex flex-col justify-center items-center mt-4">
               <input
                 type="text"
                 value={newMessage}
                 onChange={(e) => setNewMessage(e.target.value)}
-                className="border p-2 w-full mb-2"
+                className="border p-2 w-96 mb-2"
                 placeholder="Écrire un message..."
               />
-              <button type="submit" className="bg-blue-500 text-white p-2 rounded">
+              <button type="submit" className="bg-green-500 w-52 text-white p-2 rounded">
                 Envoyer
               </button>
-            </form>
-          </>
-        )}
-      </div>
-    </div>
+    </form>
+  </ul>
+  </div>
   );
 }
 

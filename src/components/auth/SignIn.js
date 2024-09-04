@@ -3,6 +3,8 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import { auth, db } from '../../firebaseConfig';
 import { doc, getDoc } from 'firebase/firestore';
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function SignIn() {
   const [email, setEmail] = useState('');
@@ -22,19 +24,21 @@ function SignIn() {
       if (userDoc.exists()) {
         const userData = userDoc.data();
         console.log('Logged in user:', userData);
-        alert("Vous êtes connecté avec succès !!!")
-        navigate('/map'); // Redirect or perform any action you want after successful login
+        toast.success("Vous êtes connecté avec succès");
+        // alert("Vous êtes connecté avec succès !!!")
+        navigate('/home'); // Redirect or perform any action you want after successful login
       } else {
         throw new Error('No user data found');
       }
     } catch (error) {
+      toast.danger("Veuillez vérifier vos identifiants");
       setError('Erreur lors de la connexion: ' + error.message);
     }
   };
 
   return (
     <div className="flex justify-center items-center h-screen bg-gray-100">
-      <form className="bg-white p-6 rounded shadow-md w-80" onSubmit={handleSignIn}>
+      <form className="space-y-6 bg-white p-6 rounded shadow-md w-80" onSubmit={handleSignIn}>
         <h2 className="text-2xl font-bold mb-4">Connexion</h2>
         <input
           type="email"

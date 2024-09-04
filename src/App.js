@@ -16,6 +16,8 @@ import AddInnovation from './components/AddInnovation';
 import AddEvent from './components/AddEvent';
 import AddResource from './components/AddResource';
 import ResourceList from './components/ResourceList';
+import Home from './components/Home';
+import Test from './components/Test';
 
 function App() {
   return (
@@ -111,6 +113,20 @@ function App() {
           element={
           <PrivateRoute>
             <ResourceList />
+          </PrivateRoute>
+          
+          } />
+        <Route path="/home" 
+          element={
+          <PrivateRoute>
+            <Home />
+          </PrivateRoute>
+          
+          } />
+        <Route path="/test" 
+          element={
+          <PrivateRoute>
+            <Test />
           </PrivateRoute>
           
           } />
