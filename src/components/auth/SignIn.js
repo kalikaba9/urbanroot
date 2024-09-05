@@ -39,6 +39,7 @@ function SignIn() {
   return (
     <div className="flex justify-center items-center h-screen bg-gray-100">
       <form className="space-y-6 bg-white p-6 rounded shadow-md w-80" onSubmit={handleSignIn}>
+      {error && <p className="text-red-500">{error}</p>}
         <h2 className="text-2xl font-bold mb-4">Connexion</h2>
         <input
           type="email"
@@ -46,6 +47,7 @@ function SignIn() {
           onChange={(e) => setEmail(e.target.value)}
           className="w-full p-2 mb-4 border rounded"
           placeholder="Email"
+          required
         />
         <input
           type="password"
@@ -53,6 +55,7 @@ function SignIn() {
           onChange={(e) => setPassword(e.target.value)}
           className="w-full p-2 mb-4 border rounded"
           placeholder="Password"
+          required
         />
         <div className='mb-4'>
               <a href="/signup" className="ml-2 block text-sm text-blue-900">

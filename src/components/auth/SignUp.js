@@ -29,6 +29,7 @@ function SignUp() {
 
       navigate('/'); // Redirigez vers la page d'accueil ou la page de connexion après l'inscription
     } catch (error) {
+      alert("Veuillez revoir votre inscription")
       console.error("Erreur lors de l'inscription: ", error);
     }
   };
@@ -43,6 +44,7 @@ function SignUp() {
           onChange={(e) => setPrenom(e.target.value)}
           className="w-full p-2 mb-4 border rounded"
           placeholder="Entrer votre prénom"
+          required
         />
         <input
           type="text"
@@ -50,6 +52,7 @@ function SignUp() {
           onChange={(e) => setNom(e.target.value)}
           className="w-full p-2 mb-4 border rounded"
           placeholder="Entrer votre nom"
+          required
         />
         <input
           type="email"
@@ -57,6 +60,7 @@ function SignUp() {
           onChange={(e) => setEmail(e.target.value)}
           className="w-full p-2 mb-4 border rounded"
           placeholder="Email"
+          required
         />
         <input
           type="password"
@@ -64,9 +68,10 @@ function SignUp() {
           onChange={(e) => setPassword(e.target.value)}
           className="w-full p-2 mb-4 border rounded"
           placeholder="Password"
+          required
         />
           <div className='mb-4'>
-              <a href="/signin" className="ml-2 block text-sm text-blue-900">
+              <a href="/" className="ml-2 block text-sm text-blue-900">
                   J'ai déjà un compte - Se connecter
               </a>
         </div>
