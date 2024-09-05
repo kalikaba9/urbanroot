@@ -82,6 +82,9 @@ const Navigations = () => {
       {isOpen && (
         <div className="md:hidden h-full bg-white">
           <nav className="grid grid-rows-4">
+            <a href='/home'>
+            <img src="" alt="Urban Roots" className="h-5" />
+            </a>
             <a href="/map" className="px-4 text-black hover:text-lime-500 transition">Map</a>
             <a href="/forums" className="px-4 text-black hover:text-lime-500 transition">Forums</a>
             <a href="/guides" className="px-4 text-black hover:text-lime-500 transition">Guides</a>
