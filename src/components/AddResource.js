@@ -52,10 +52,11 @@ function AddResource() {
   };
 
   return (
-    <div className="p-4">
+    <div className="px-4">
       <Navigations />
+      <div className="mx-14 mt-10 border-2 border-blue-400 rounded-lg">
+      <div className="mt-3 text-center text-4xl font-bold">Ajouter une ressource</div>
       <form onSubmit={handleAddResource} className="bg-white p-6 rounded shadow-md">
-        <h2 className="text-2xl mb-4">Ajouter une Nouvelle Ressource</h2>
         <input
           type="text"
           value={name}
@@ -76,8 +77,11 @@ function AddResource() {
           className="border p-2 w-full mb-4"
           placeholder="Catégorie"
         />
-        <button type="submit" className="bg-blue-500 text-white p-2 rounded">Ajouter</button>
+        <div className="text-center">
+        <button type="submit" className="bg-blue-500 w-52 text-white p-2 rounded">Ajouter</button>
+        </div>
       </form>
+      </div>
     </div>
   );
 }

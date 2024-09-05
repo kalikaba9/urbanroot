@@ -54,7 +54,7 @@ function SignIn() {
           className="w-full p-2 mb-4 border rounded"
           placeholder="Password"
         />
-        <div>
+        <div className='mb-4'>
               <a href="/signup" className="ml-2 block text-sm text-blue-900">
                   S'inscrire
               </a>

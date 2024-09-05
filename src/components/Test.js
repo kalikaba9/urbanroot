@@ -1,100 +1,77 @@
 import React, { useState, useEffect } from 'react';
-import { doc, getDoc, updateDoc, arrayUnion } from 'firebase/firestore';
+import { collection, addDoc } from 'firebase/firestore';
 import { db } from '../firebaseConfig';
-import { useParams } from 'react-router-dom';
-import { getAuth, onAuthStateChanged } from 'firebase/auth'; 
 import Navigations from './Navigations';
 
 
 function Test() {
-    const { id } = useParams();
-    const [forum, setForum] = useState(null);
-    const [newMessage, setNewMessage] = useState('');
-    const [user, setUser] = useState(null); // Pour stocker les informations de l'utilisateur
-  
-    useEffect(() => {
-      // Récupérer le forum
-      const fetchForum = async () => {
-        const docRef = doc(db, 'forums', id);
-        const docSnap = await getDoc(docRef);
-        if (docSnap.exists()) {
-          setForum(docSnap.data());
-        } else {
-          console.log("No such document!");
-        }
-      };
-      fetchForum();
-    }, [id]);
-  
-    useEffect(() => {
-      // Vérifier l'état de l'utilisateur
-      const auth = getAuth();
-      const unsubscribe = onAuthStateChanged(auth, (user) => {
-        if (user) {
-          setUser(user);
-        } else {
-          setUser(null);
-        }
+  const [forumName, setForumName] = useState('');
+  const [forumDescription, setForumDescription] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    try {
+      // Ajout du forum à Firestore
+      await addDoc(collection(db, 'forums'), {
+        name: forumName,
+        description: forumDescription,
+        createdAt: new Date(),
+        
       });
-  
-      return () => unsubscribe();
-    }, []);
-  
-    const handleAddMessage = async (e) => {
-      e.preventDefault();
-      if (!user) {
-        alert('Vous devez être connecté pour envoyer un message.');
-        return;
-      }
-  
-      const docRef = doc(db, 'forums', id);
-      await updateDoc(docRef, {
-        messages: arrayUnion({
-          author: user.displayName || user.email, // Utiliser le nom de l'utilisateur connecté ou l'email s'il n'a pas de nom
-          message: newMessage,
-          timestamp: new Date().toISOString()
-        })
-      });
-      setNewMessage('');
-      const updatedForum = (await getDoc(docRef)).data();
-      setForum(updatedForum);
-    };
-  
+      alert('ajout reussi ');
+
+      // Réinitialiser les champs après soumission
+      setForumName('');
+      setForumDescription('');
+    } catch (err) {
+      setError('Une erreur est survenue lors de la création du forum.');
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  };
   return (
     <div className='px-4'>
     <Navigations />
-    <div class="flex flex-col p-5 lg:px-48 lg:py-11">
-    {forum && (
-    <>
-    <div class="bg-gray-100 p-5 mb-10">
-        <h1 class="font-bold text-2xl mb-2">{forum.title}</h1>
-        <p class="my-3">
-            {forum.description}
-        </p>
-        <ul>
-        {forum.messages && forum.messages.map((msg, index) => (
-                <li key={index} className="mb-2">
-                  <strong>{msg.author}</strong>: {msg.message} <br />
-                  <span className="text-gray-500">{new Date(msg.timestamp).toLocaleString()}</span>
-                </li>
-        ))}
-        </ul>
-        <form onSubmit={handleAddMessage} className="mt-4">
-              <input
-                type="text"
-                value={newMessage}
-                onChange={(e) => setNewMessage(e.target.value)}
-                className="border p-2 w-full mb-2"
-                placeholder="Écrire un message..."
-              />
-              <button type="submit" className="bg-blue-500 text-white p-2 rounded">
-                Envoyer
-              </button>
-            </form>
+    <div className="mx-14 mt-10 border-2 border-blue-400 rounded-lg">
+  <div className="mt-3 text-center text-4xl font-bold">Ajouter un forum</div>
+  <form className='p-8' onSubmit={handleSubmit}>
+    {error && <p className="text-red-500">{error}</p>}
+    <div className="flex gap-4">
+      <input 
+      type="Name" 
+      name="name" 
+      className="mt-1 block w-full rounded-md border border-slate-300 bg-white px-3 py-4 placeholder-slate-400 shadow-sm placeholder:font-semibold placeholder:text-gray-500 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 sm:text-sm" 
+      placeholder="Nom du forum *" 
+      value={forumName}
+      onChange={(e) => setForumName(e.target.value)}
+      required
+      />
     </div>
-    </>
-    )}
+    
+    <div className="my-6">
+      <textarea 
+      name="textarea" 
+      id="text" 
+      cols="30" 
+      rows="10" 
+      className="mb-10 h-40 w-full resize-none rounded-md border border-slate-300 p-5 font-semibold text-gray-300"
+      value={forumDescription}
+      onChange={(e) => setForumDescription(e.target.value)}
+      required
+      >
+        Message
+      </textarea>
     </div>
+    <div className="text-center">
+      <a className="cursor-pointer rounded-lg bg-blue-700 px-8 py-5 text-sm font-semibold text-white">Enregistrer</a>
+    </div>
+  </form>
+</div>
     </div>
   );
 }

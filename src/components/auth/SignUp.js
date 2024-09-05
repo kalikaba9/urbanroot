@@ -65,6 +65,11 @@ function SignUp() {
           className="w-full p-2 mb-4 border rounded"
           placeholder="Password"
         />
+          <div className='mb-4'>
+              <a href="/signin" className="ml-2 block text-sm text-blue-900">
+                  J'ai déjà un compte - Se connecter
+              </a>
+        </div>
         <button className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600">
           S'incrire
         </button>

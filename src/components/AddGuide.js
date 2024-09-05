@@ -48,10 +48,11 @@ function AddGuide() {
   };
 
   return (
-    <>
+    <div className='px-4'>
       <Navigations />
+      <div className="mx-14 mt-10 border-2 border-blue-400 rounded-lg">
+      <div className="mt-3 text-center text-4xl font-bold">Ajouter un guide</div>
       <form onSubmit={handleAddGuide} className="bg-white p-6 rounded shadow-md">
-        <h2 className="text-2xl mb-4">Ajouter un Nouveau Guide</h2>
         <input
           type="text"
           value={title}
@@ -72,9 +73,12 @@ function AddGuide() {
           className="border p-2 w-full mb-4"
           placeholder="Catégorie"
         />
-        <button type="submit" className="bg-blue-500 text-white p-2 rounded">Ajouter</button>
+        <div className="text-center">
+        <button type="submit" className="bg-blue-500 w-52 text-white p-2 rounded">Ajouter</button>
+        </div>
       </form>
-    </>
+      </div>
+    </div>
   );
 }
 
