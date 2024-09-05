@@ -18,7 +18,7 @@ function EventList() {
   return (
     <div className="p-4">
       <Navigations />
-      <section className="w-full mx-auto py-10 bg-gray-50 dark:bg-gray-900 dark:text-white">
+      <section className="w-full mx-auto py-10 bg-gray-50 dark:text-white">
       <div className="w-fit pb-1 px-2 mx-4 rounded-md text-2xl font-semibold border-b-2 border-blue-600 dark:border-b-2 dark:border-yellow-600">Evenements</div>
     <div class="px-2 mb-12 mx-auto py-8 max-w-4xl">
     {/* <header>
