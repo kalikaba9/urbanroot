@@ -39,7 +39,8 @@ const Navigations = () => {
       {/* Top Navigation */}
       <div className="hidden md:flex space-x-4 flex justify-between items-center">
         <a href='/home'>
-        <img src="" alt="Urban Roots" className="h-5" />
+        Urban Roots
+        {/* <img src="" alt="Urban Roots" className="h-5" /> */}
         </a>
         <nav className="flex space-x-4">
           <a href="/map" className="text-black hover:text-lime-500 transition">Map</a>
@@ -80,21 +81,21 @@ const Navigations = () => {
       </div>
 
       {isOpen && (
-        <div className="md:hidden h-full bg-white">
+        <div className="md:hidden h-screen bg-white">
           <nav className="grid grid-rows-4">
-            <a href='/home'>
-            Urban Roots
+            <a href='/home' className="px-4 mb-4 text-black hover:text-lime-500 transition">
+            Home
             </a>
             <a href="/map" className="px-4 text-black hover:text-lime-500 transition">Map</a>
             <a href="/forums" className="px-4 text-black hover:text-lime-500 transition">Forums</a>
             <a href="/guides" className="px-4 text-black hover:text-lime-500 transition">Guides</a>
             <a href="/innovations" className="px-4 text-black hover:text-lime-500 transition">Innovations</a>
-            <a href="/events" className="text-black px-4 py-2 rounded-full w-64 shadow hover:bg-lime-500 transition">Evenement</a>
-            <a href="/resource" className="text-black px-4 py-2 rounded-full w-64 shadow hover:bg-lime-500 transition">Ressource</a>
+            <a href="/events" className="text-black px-4 py-4 hover:text-lime-500 transition">Evenement</a>
+            <a href="/resource" className="text-black px-4 py-2  hover:text-lime-500 transition">Ressource</a>
             {user ? (
               <div className="px-4">
-                <span className="text-black block mb-2">Bienvenue, {user.displayName || user.email}</span>
-                <button onClick={handleLogout} className="bg-red-500 text-white px-4 py-2 rounded shadow hover:bg-red-600 transition w-full">Déconnexion</button>
+                <span className="text-black block mt-24 ">Bienvenue, {user.displayName || user.email}</span>
+                <button onClick={handleLogout} className="bg-red-500 text-white px-4 py-2 rounded shadow hover:bg-red-600 transition w-52">Déconnexion</button>
               </div>
             ) : (
               <a href="/login" className="px-4 text-black hover:text-lime-500 transition">Compte</a>
