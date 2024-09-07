@@ -70,6 +70,9 @@ function Map() {
           <Marker position={position} icon={customIcon}>
             <Popup>
               Vous êtes ici !
+              <p>
+              Latitude: {position[0]}, Longitude: {position[1]}
+              </p>
             </Popup>
           </Marker>
         )}
