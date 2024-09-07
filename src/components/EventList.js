@@ -2,6 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../firebaseConfig';
 import Navigations from './Navigations';
+import Footer from './Footer';
+
+const compteur = {
+  i: 0,
+}
 
 function EventList() {
   const [events, setEvents] = useState([]);
@@ -14,40 +19,64 @@ function EventList() {
     };
     fetchEvents();
   }, []);
-
   return (
-    <div className="p-4">
+    <div className="">
       <Navigations />
       <section className="w-full mx-auto py-10 bg-gray-50 dark:text-white">
       <div className="w-fit pb-1 px-2 mx-4 rounded-md text-2xl font-semibold border-b-2 border-blue-600 dark:border-b-2 dark:border-yellow-600">Evenements</div>
-    <div class="px-2 mb-12 mx-auto py-8 max-w-4xl">
-    {/* <header>
-      <h2 class="mb-4 font-semibold dark:text-gray-100 text-2xl text-center">Evenements</h2>
-    </header> */}
-    {/* <div class=""> */}
-     <ul className='grid grid-cols-1 md:grid-cols-2 gap-4 justify-items-center'>
-        {events.map((event, index) => (
-          <li key={index} className="flex border rounded dark:border-gray-700/50 dark:bg-gray-800 max-w-md">
-      {/* <article class=""> */}
-        <img class="object-cover w-[140px] h-[200px] rounded-l" loading="lazy" src="https://images.unsplash.com/photo-1684867430634-b1b22843d1f2?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Anselm Kiefer" width="140" height="200" />
-        <div class="flex flex-col justify-between flex-1 p-2">
-          <div class="flex flex-col gap-2">
-            <h3 class="font-semibold dark:text-white line-clamp-2">{event.title}</h3>
-            <p class="text-sm text-gray-700 dark:text-gray-300 line-clamp-3">{event.description}</p>
-            <p class="text-sm text-gray-600 dark:text-gray-400"><strong>Date:</strong> {event.date}</p>
-          </div>
-          <div class="flex items-center justify-end gap-2 dark:text-gray-300 flex-wrap">
-          <p className="text-gray-500">Organisé par: {event.organizer}</p>
-          </div>
-        </div>
-      {/* </article> */}
-      </li>
-      ))}
-      </ul>
 
-    {/* </div> */}
-  </div>
+      <ul class="container mx-auto px-4 py-8">
+      {events.map((event, index) => (
+    <li key={index} class="relative wrap overflow-hidden">
+        <div class="mb-8 absolute h-full p-4 text-center  right-1/2">
+        <img src="https://images.unsplash.com/photo-1536147116438-62679a5e01f2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80" alt="Leafs" className="" /> 
+        </div>
+        <div class="mb-8 flex justify-between items-center w-full auto-timeline">
+            <div class="order-1 w-5/12"></div>
+            <div class="z-20 ml-24 flex items-center order-1 bg-gray-800 shadow-xl w-12 h-12 rounded-full">
+                <h1 class="mx-auto font-semibold text-lg text-white">{compteur.i++}</h1>
+            </div>
+            <div class="order-1 bg-gray-400 rounded-lg shadow-xl w-5/12 px-6 py-4">
+                <h3 class="mb-3 font-bold text-gray-800 text-xl">{event.title}</h3>
+                <p class="text-gray-700 leading-tight">
+                {event.description}
+                </p>
+                <p class="text-sm text-gray-600 dark:text-gray-400">
+                  <strong>Date:</strong> {event.date}
+                </p>
+            <div class="flex items-center justify-end gap-2 dark:text-gray-300 flex-wrap">
+                <p className="text-gray-500">Organisé par: {event.organizer}</p>
+            </div>
+            </div>
+        </div>
+        {/* <div class="mb-8 flex justify-between flex-row-reverse items-center w-full left-timeline">
+            <div class="order-1 w-5/12"></div>
+            <div class="z-20 flex items-center order-1 bg-gray-800 shadow-xl w-12 h-12 rounded-full">
+                <h1 class="mx-auto font-semibold text-lg text-white">2</h1>
+            </div>
+            <div class="order-1 bg-gray-400 rounded-lg shadow-xl w-5/12 px-6 py-4">
+                <h3 class="mb-3 font-bold text-gray-800 text-xl">Event Title</h3>
+                <p class="text-gray-700 leading-tight">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Vestibulum in nisi commodo, aliquet velit ac, dapibus elit.</p>
+            </div>
+        </div> */}
+        {/* <div class="mb-8 flex justify-between items-center w-full right-timeline">
+            <div class="order-1 w-5/12"></div>
+            <div class="z-20 flex items-center order-1 bg-gray-800 shadow-xl w-12 h-12 rounded-full">
+                <h1 class="mx-auto font-semibold text-lg text-white">3</h1>
+            </div>
+            <div class="order-1 bg-gray-400 rounded-lg shadow-xl w-5/12 px-6 py-4">
+                <h3 class="mb-3 font-bold text-gray-800 text-xl">Event Title</h3>
+                <p class="text-gray-700 leading-tight">
+               
+                </p>
+            </div>
+        </div> */}
+    </li>
+    ))}
+</ul>
 </section>
+<Footer />
     </div>
   );
 }

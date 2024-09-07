@@ -4,6 +4,7 @@ import { db } from '../firebaseConfig';
 import { useParams } from 'react-router-dom';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';  // Importer Firebase Auth
 import Navigations from './Navigations';
+import Footer from './Footer';
 
 function ForumDetail() {
   const { id } = useParams();
@@ -60,7 +61,7 @@ function ForumDetail() {
   };
 
   return (
-    <div className='items-center px-4'>
+    <div className='items-center'>
     <Navigations />
     <ul>
         {forum.messages && forum.messages.map((msg, index) => (
@@ -92,6 +93,7 @@ function ForumDetail() {
               </button>
     </form>
   </ul>
+  <Footer />
   </div>
   );
 }

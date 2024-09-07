@@ -9,6 +9,12 @@ import L from 'leaflet';
 // import './Map.css';
 import { doc, updateDoc } from 'firebase/firestore';
 import { auth, db } from '../firebaseConfig';
+import userIcon from './map_icon.png'; // Replace with your icon path
+
+const customIcon = new L.Icon({
+  iconUrl: userIcon,
+  iconSize: [38, 38], // Adjust the size to your liking
+});
 
 function Map() {
   const [position, setPosition] = useState(null);
@@ -61,7 +67,7 @@ function Map() {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         />
         {position && (
-          <Marker position={position} icon={L.icon({ iconUrl: 'path/to/custom-icon.png', iconSize: [25, 41], iconAnchor: [12, 41] })}>
+          <Marker position={position} icon={customIcon}>
             <Popup>
               Vous êtes ici !
             </Popup>

@@ -60,7 +60,7 @@ const Footer = () => {
             </li>           
             </ul>
           </div>
-          <div className="px-4 my-4 w-full sm:w-auto">
+          {/* <div className="px-4 my-4 w-full sm:w-auto">
             <div>
               <h2 className="inline-block text-2xl pb-4 mb-4 border-b-4 border-blue-600">Blog</h2>
             </div>
@@ -71,7 +71,7 @@ const Footer = () => {
               <li><a href="#" className="hover:text-blue-400">Website</a></li>
               <li><a href="#" className="hover:text-blue-400">See More</a></li>
             </ul>
-          </div>
+          </div> */}
           <div className="px-4 my-4 w-full sm:w-auto xl:w-1/5">
             <div>
               <h2 className="inline-block text-2xl pb-4 mb-4 border-b-4 border-blue-600">Connecté avec les réseaux</h2>

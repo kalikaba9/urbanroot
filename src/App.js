@@ -18,6 +18,7 @@ import AddResource from './components/AddResource';
 import ResourceList from './components/ResourceList';
 import Home from './components/Home';
 import Test from './components/Test';
+import ResourceDetail from './components/ResourceDetail';
 
 function App() {
   return (
@@ -71,6 +72,13 @@ function App() {
           element={
           <PrivateRoute>
             <ForumDetail />
+          </PrivateRoute>
+          
+          } />
+        <Route path="/resource/:id" 
+          element={
+          <PrivateRoute>
+            <ResourceDetail />
           </PrivateRoute>
           
           } />
